@@ -38,24 +38,69 @@ function List() {
   );
 }
 
-function Search(){
+const Welcome = () =>{
+  return ("Welcome to our App!");
+}
+
+const Search = () => {
+
+  const handleChange = (event) => {
+    console.log(event);  //synthetic event 
+    console.log(event.target.value);  //input HTML element
+  };
+
   return (
     <div>
      <label htmlFor="search">Search Here:</label>
-      <input id="search" type="text" />
+      <input id="search" type="text" onChange={handleChange} />
     </div>
   );
 }
+  
+
+
+function LogOut(){
+  return (
+    <div>
+      alert("Are you sure you want to leave?");
+    </div>
+  );
+}
+
+const AddOne = (count) => {
+  if(count > 0){
+    count = count++;
+  } else {
+    count = 10;
+  }
+  return (
+    <div>
+       'The current count is ' +  count
+    </div>
+  ) 
+}
+
 
 function App() {
   return (
     <div>
       <h1>My Hacker Stories</h1>
      
+   
+     <Welcome />
+
+     
      <Search />
       <hr />
 
+     
      <List />
+
+     <LogOut />
+
+     <br />
+     <AddOne />
+
     </div>
   );
 }
