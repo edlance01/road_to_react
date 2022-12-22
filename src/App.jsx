@@ -21,15 +21,20 @@ const App = () => {
     }
   ]
 
+  const handleSearch = (event) => {
+    console.log(event.target.value);
+  };
+
   return (
     <div>
       <h1>My Hacker Stories</h1>
 
+      
 
       <Welcome />
 
 
-      <Search />
+      <Search onSearch = {handleSearch} />
       <hr />
 
 
@@ -38,11 +43,12 @@ const App = () => {
       <LogOut />
 
       <br />
-      <AddOne />
+      <Score />
 
     </div>
   );
 };
+
 
 const List = (props) => (
  
@@ -70,15 +76,14 @@ const Welcome = () => {
   return ("Welcome to our App!");
 }
 
-const Search = () => {
-  console.log('Search renders');  
-  //searchTerm is current state, setSearchTerm is function to update state (state updater function)
+const Search = (props) => {
+ 
   const [searchTerm, setSearchTerm] = React.useState('');
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
-    
-    // console.log(event.target.value);  
+
+    props.onSearch(event);
   };
 
   return (
@@ -114,6 +119,24 @@ const AddOne = (count) => {
       'The current count is ' +  count
     </div>
   )
+}
+
+const Score = () => {
+  const [score, setScore] = React.useState(0);
+
+  function handleClick(){
+    setScore(score + 6);
+  }
+
+  return (
+     <div>
+        Score: {score}
+
+        <button type="button" onClick={handleClick}>
+          Increase Score
+        </button>
+     </div>
+  );
 }
 
 export default App;
